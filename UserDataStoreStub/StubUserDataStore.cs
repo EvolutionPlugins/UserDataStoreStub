@@ -1,10 +1,14 @@
-﻿using OpenMod.API.Users;
+﻿using Microsoft.Extensions.DependencyInjection;
+using OpenMod.API.Ioc;
+using OpenMod.API.Prioritization;
+using OpenMod.API.Users;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EvolutionPlugins.UserDataStoreStub;
 
-internal class StubUserDataStore : IUserDataStore
+[ServiceImplementation(Lifetime = ServiceLifetime.Singleton, Priority = Priority.Normal)]
+public class StubUserDataStore : IUserDataStore
 {
     public Task<UserData?> GetUserDataAsync(string userId, string userType)
     {
